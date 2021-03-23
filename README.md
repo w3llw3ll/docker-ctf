@@ -12,10 +12,18 @@ docker build . -t docker-ctf -f Dockerfile
 
 Spawn a container whenever you need it:
 
+# docker build -t ctf:ubuntu19.10 .
+# If using Windows
+      # docker run --rm -v %cd%:/pwd --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name ctf -i ctf:ubuntu19.10
+# If using Linux    
+      # docker run --rm -v $PWD:/pwd --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name ctf -i ctf:ubuntu19.10
+# docker exec -it ctf /bin/bash
+
+
 ```
 docker run --rm \
     -it \
-    -v $PWD:/ctf \
+    -v  %cd%:/pwd \
     --cap-add=SYS_PTRACE \
     --security-opt seccomp=unconfined \
     -p 127.0.0.1:5555:5555 \
